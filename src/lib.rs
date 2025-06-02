@@ -1,5 +1,5 @@
 #[allow(dead_code)]
-pub fn quicksort(arr: &mut [i32]) {
+pub fn quicksort<T: Ord>(arr: &mut [T]) {
     if arr.len() <= 1 {
         return;
     }
@@ -7,16 +7,15 @@ pub fn quicksort(arr: &mut [i32]) {
     let pivot_index = partition(arr);
     let (left, right) = arr.split_at_mut(pivot_index);
     quicksort(left);
-    quicksort(&mut right[1..]); // skip the pivot
+    quicksort(&mut right[1..]); // skip pivot
 }
 
-fn partition(arr: &mut [i32]) -> usize {
+fn partition<T: Ord>(arr: &mut [T]) -> usize {
     let len = arr.len();
-    let pivot = arr[len - 1];
     let mut i = 0;
 
     for j in 0..len - 1 {
-        if arr[j] <= pivot {
+        if arr[j] <= arr[len - 1] {
             arr.swap(i, j);
             i += 1;
         }
@@ -25,7 +24,6 @@ fn partition(arr: &mut [i32]) -> usize {
     arr.swap(i, len - 1);
     i
 }
-
 
 #[cfg(test)]
 mod tests {
