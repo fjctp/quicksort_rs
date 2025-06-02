@@ -1,20 +1,12 @@
 #[allow(dead_code)]
-pub fn quicksort(mut arr: Vec<i32>) -> Vec<i32> {
+pub fn quicksort(arr: Vec<i32>) -> Vec<i32> {
     if arr.len() <= 1 {
         return arr;
     }
 
-    let pivot = arr.remove(0);
-    let mut less: Vec<i32> = Vec::new();
-    let mut greater: Vec<i32> = Vec::new();
-
-    for x in arr {
-        if x <= pivot {
-            less.push(x);
-        } else {
-            greater.push(x);
-        }
-    }
+    let pivot = arr[0];
+    let less: Vec<i32> = arr.iter().skip(1).filter(|&&x| x <= pivot).cloned().collect();
+    let greater: Vec<i32> = arr.iter().skip(1).filter(|&&x| x > pivot).cloned().collect();
 
     let mut sorted = quicksort(less);
     sorted.push(pivot);
