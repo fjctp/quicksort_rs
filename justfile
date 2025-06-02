@@ -10,3 +10,6 @@ test: clean
 
 bench:
   cargo bench
+
+doc:
+  cargo doc --open
