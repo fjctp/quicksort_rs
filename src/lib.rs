@@ -16,6 +16,8 @@
 /// # Example
 ///
 /// ```
+/// use quicksort_rs::quicksort;
+/// 
 /// let mut data = vec![3, 1, 4, 1, 5, 9];
 /// quicksort(&mut data);
 /// assert_eq!(data, vec![1, 1, 3, 4, 5, 9]);
